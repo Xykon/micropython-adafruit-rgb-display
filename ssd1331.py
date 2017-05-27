@@ -82,12 +82,12 @@ display.pixel(32, 32, 0)
 
     def _write(self, command=None, data=None):
         if command is None:
-            self.dc.high()
+            self.dc.value(1)
         else:
-            self.dc.low()
-        self.cs.low()
+            self.dc.value(0)
+        self.cs.value(0)
         if command is not None:
             self.spi.write(bytearray([command]))
         if data is not None:
             self.spi.write(data)
-        self.cs.high()
+        self.cs.value(1)
